@@ -9,3 +9,18 @@ describe('GET index', () => {
     expect(res.body.foo).toEqual('bar')
   })
 })
+
+describe('POST /new', () => {
+  it('should take a post request', async (done) => {
+    const res = await request(app)
+      .post("/new")
+      .type("json")
+      .send({
+        key: "value",
+      })
+
+    expect(res.body).toHaveProperty('key')
+    expect(res.body.key).toEqual('value')
+    done()
+  })
+})
